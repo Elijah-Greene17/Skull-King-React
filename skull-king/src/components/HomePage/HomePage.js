@@ -1,21 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
+import View from '../UI/View/View';
+import TitleHeader from '../UI/TitleHeader/TitleHeader';
 
 const HomePage = () => {
     const navigate = useNavigate();
 
     return (
-        <div>
-            <h1>Skull King</h1>
-            <Link to="/createjoin"> Go </Link>
-            <button
-                onClick={() => {
-                    navigate('/createjoin');
-                }}
-            >
-                {' '}
-                about{' '}
-            </button>
-        </div>
+        <View>
+            <TitleHeader>Skull King</TitleHeader>
+        </View>
     );
 };
 
