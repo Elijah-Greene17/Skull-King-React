@@ -1,0 +1,11 @@
+@font-face {
+    font-family: poppins;
+    src: url('../aaFonts/poppins/Poppins-Bold.ttf');
+}
+
+.label {
+    font-family: poppins;
+    font-size: 24px;
+    color: #ffffff;
+    margin: 0;
+}

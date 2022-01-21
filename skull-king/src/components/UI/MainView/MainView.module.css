@@ -1,0 +1,18 @@
+.mainView {
+    min-height: 90vh;
+    max-height: 90vh;
+    min-width: 100vw;
+    max-width: 100vw;
+
+    /* Background Image */
+    background: linear-gradient(
+        168.64deg,
+        #2b0937 -2.42%,
+        #092244 -2.41%,
+        #3a1b46 99.46%
+    );
+
+    text-align: center;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}

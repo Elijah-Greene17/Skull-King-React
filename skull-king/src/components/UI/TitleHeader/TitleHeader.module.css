@@ -1,4 +1,11 @@
+@font-face {
+    font-family: treasure;
+    src: url('../aaFonts/treasure-map-font/Treasuremap-Ea1vj.ttf');
+}
+
 .titleHeader {
     margin: 0;
-    color: snow;
+    color: #fff544;
+    font-family: treasure;
+    font-size: 36px;
 }

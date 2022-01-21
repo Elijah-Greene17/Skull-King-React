@@ -1,0 +1,15 @@
+@font-face {
+    font-family: poppins;
+    src: url('../aaFonts/poppins/Poppins-Bold.ttf');
+}
+
+.button {
+    width: 300px;
+    height: 55px;
+    color: #331d46;
+    background-color: #ddd544;
+    font-size: 32px;
+    font-family: poppins;
+    border-radius: 12px;
+    border-style: none;
+}
