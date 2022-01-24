@@ -3,6 +3,7 @@ import CreateJoinPage from './components/CreateJoinPage/CreateJoinPage';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styles from './App.module.css';
+import MainView from './components/UI/MainView/MainView';
 
 function App() {
     return (
