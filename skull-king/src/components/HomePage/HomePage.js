@@ -1,21 +1,23 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MainView from '../UI/MainView/MainView';
 import TitleHeader from '../UI/TitleHeader/TitleHeader';
-import Label from '../UI/Label/Label';
-import Input from '../UI/Input/Input';
+import ApplicationInput from '../UI/Input/ApplicationInput';
 import Button from '../UI/Button/Button';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
     const navigate = useNavigate();
 
+    const handlePlay = () => {
+        navigate('/createjoin');
+    };
+
     return (
         <MainView>
             <div className={styles.homePage}>
                 <TitleHeader>Skull King</TitleHeader>
-                <Label>Enter your name</Label>
-                <Input />
-                <Button>PLAY</Button>
+                <ApplicationInput>Enter your name</ApplicationInput>
+                <Button onClick={handlePlay}>PLAY</Button>
             </div>
         </MainView>
     );
