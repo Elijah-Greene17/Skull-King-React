@@ -13,11 +13,11 @@ function App() {
         host
         
     */
-    const [name, setName] = useState('Hashi');
+    const [name, setName] = useState('');
     const [host, setHost] = useState('');
 
     return (
-        <AppContext.Provider value={(name, setName, host, setHost)}>
+        <AppContext.Provider value={{ name, setName, host, setHost }}>
             <Router>
                 <Routes>
                     <Route path="/" element={<HomePage />} />

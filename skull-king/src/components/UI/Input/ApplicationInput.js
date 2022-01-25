@@ -1,22 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from './ApplicationInput.module.css';
 import Label from '../Label/Label';
 
 const ApplicationInput = (props) => {
-    const [text, setText] = useState('');
-
     const handleChange = (e) => {
-        setText(e.target.value);
+        props.onChange(e.target.value);
     };
 
     return (
         <div>
             <Label>{props.children}</Label>
-            <input
-                className={styles.input}
-                value={text}
-                onChange={handleChange}
-            />
+            <input className={styles.input} onChange={handleChange} />
         </div>
     );
 };
