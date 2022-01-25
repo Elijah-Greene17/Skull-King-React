@@ -1,19 +1,31 @@
+import { useState } from 'react';
 import HomePage from './components/HomePage/HomePage';
 import CreateJoinPage from './components/CreateJoinPage/CreateJoinPage';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import styles from './App.module.css';
-import MainView from './components/UI/MainView/MainView';
+import { AppContext } from './Contexts/AppContext';
 
 function App() {
+    /* Variables:
+
+        userName
+        userId
+        host
+        
+    */
+    const [name, setName] = useState('Hashi');
+    const [host, setHost] = useState('');
+
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/createjoin" element={<CreateJoinPage />} />
-                <Route path="*" element={<ErrorPage />} />
-            </Routes>
-        </Router>
+        <AppContext.Provider value={(name, setName, host, setHost)}>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/createjoin" element={<CreateJoinPage />} />
+                    <Route path="*" element={<ErrorPage />} />
+                </Routes>
+            </Router>
+        </AppContext.Provider>
     );
 }
 
