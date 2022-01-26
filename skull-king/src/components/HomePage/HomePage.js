@@ -6,14 +6,14 @@ import ApplicationInput from '../UI/Input/ApplicationInput';
 import Button from '../UI/Button/Button';
 import styles from './HomePage.module.css';
 import { AppContext } from '../../Contexts/AppContext';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
 const HomePage = () => {
     const navigate = useNavigate();
-    const { name, setName } = useContext(AppContext);
+    const { name, setName, showError } = useContext(AppContext);
 
     const handleOnChange = (text) => {
         setName(text);
@@ -23,15 +23,7 @@ const HomePage = () => {
         if (name.length > 0) {
             navigate('/createjoin');
         } else {
-            toast.error('Please enter a name', {
-                position: 'bottom-center',
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-            });
+            showError('Please enter your name');
         }
     };
 
