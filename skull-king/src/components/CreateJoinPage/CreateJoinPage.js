@@ -20,7 +20,17 @@ const CreateJoinPage = () => {
                 <TitleHeader>Ahoy, {name}!</TitleHeader>
                 <ApplicationInput>Enter a Server Code</ApplicationInput>
                 <div>
-                    <Button>CREATE GAME</Button>
+                    <Button
+                        onClick={() => {
+                            fetch('http://localhost:3001/idExists', {
+                                mode: 'no-cors',
+                            })
+                                .then((res) => res.json())
+                                .then((data) => console.log(data));
+                        }}
+                    >
+                        CREATE GAME
+                    </Button>
                     <Button
                         onClick={() => {
                             ping('Jellybeans');
