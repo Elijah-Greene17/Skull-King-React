@@ -22,9 +22,7 @@ const CreateJoinPage = () => {
                 <div>
                     <Button
                         onClick={() => {
-                            fetch('http://localhost:3001/idExists', {
-                                mode: 'no-cors',
-                            })
+                            fetch('http://localhost:3001/idExists')
                                 .then((res) => res.json())
                                 .then((data) => console.log(data));
                         }}
