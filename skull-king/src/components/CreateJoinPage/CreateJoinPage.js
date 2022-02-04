@@ -14,7 +14,7 @@ toast.configure();
 const CreateJoinPage = () => {
     const { name, showError } = useContext(AppContext);
 
-    const gameId = 'A1B2';
+    const [gameId, setGameId] = useState('');
 
     // const ping = (msg) => {
     //     socket.emit('pingSocket', msg);
@@ -24,18 +24,47 @@ const CreateJoinPage = () => {
         <MainView>
             <div className={styles.createJoinPage}>
                 <TitleHeader>Ahoy, {name}!</TitleHeader>
-                <ApplicationInput>Enter a Server Code</ApplicationInput>
+                <ApplicationInput
+                    onChange={(value) => {
+                        setGameId(value);
+                    }}
+                >
+                    Enter a Server Code
+                </ApplicationInput>
                 <div>
-                    <Button onClick={() => {}}>CREATE GAME</Button>
                     <Button
                         onClick={() => {
-                            fetch(`http://localhost:3001/idExists${gameId}`)
+                            fetch('http://localhost:3001/createGame', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    name: name,
+                                }),
+                            })
                                 .then((res) => {
                                     if (res.ok) {
-                                        console.log('ID exists!');
-                                        res.json();
+                                        return res.json();
                                     } else {
-                                        showError('This Id does not exist');
+                                        console.log('Error creating game');
+                                    }
+                                })
+                                .then((data) => console.log(data));
+                        }}
+                    >
+                        CREATE GAME
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            fetch(`http://localhost:3001/idExists/${gameId}`)
+                                .then((res) => {
+                                    if (res.ok) {
+                                        return res.json();
+                                    } else {
+                                        console.log(
+                                            'Error searching for game Id'
+                                        );
                                     }
                                 })
                                 .then((data) => console.log(data));

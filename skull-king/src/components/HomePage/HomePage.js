@@ -15,10 +15,6 @@ const HomePage = () => {
     const navigate = useNavigate();
     const { name, setName, showError } = useContext(AppContext);
 
-    const handleOnChange = (text) => {
-        setName(text);
-    };
-
     const handlePlay = () => {
         if (name.length > 0) {
             navigate('/createjoin');
@@ -31,7 +27,11 @@ const HomePage = () => {
         <MainView>
             <div className={styles.homePage}>
                 <TitleHeader>Skull King</TitleHeader>
-                <ApplicationInput onChange={handleOnChange}>
+                <ApplicationInput
+                    onChange={(value) => {
+                        setName(value);
+                    }}
+                >
                     Enter your name
                 </ApplicationInput>
                 <Button onClick={handlePlay}>PLAY</Button>
