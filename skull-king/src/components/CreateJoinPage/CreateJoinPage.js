@@ -34,7 +34,7 @@ const CreateJoinPage = () => {
                 <div>
                     <Button
                         onClick={() => {
-                            fetch('http://localhost:3001/createGame', {
+                            fetch('http://localhost:3001/createNewGame', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
