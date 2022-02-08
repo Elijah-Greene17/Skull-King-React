@@ -1,0 +1,10 @@
+.playerList {
+    width: 60vw;
+    height: 50vh;
+    color: white;
+    text-align: left;
+}
+
+.listItem {
+    margin-top: 8px;
+}

@@ -12,8 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 const HomePage = () => {
-    const navigate = useNavigate();
     const { name, setName, showError } = useContext(AppContext);
+    const navigate = useNavigate();
 
     const handlePlay = () => {
         if (name.length > 0) {

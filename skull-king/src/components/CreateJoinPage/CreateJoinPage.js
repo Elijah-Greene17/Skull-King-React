@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../Contexts/AppContext';
 import Button from '../UI/Button/Button';
 import ApplicationInput from '../UI/Input/ApplicationInput';
@@ -12,9 +13,10 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 const CreateJoinPage = () => {
-    const { name, showError } = useContext(AppContext);
+    const { name, gameId, setGameId, showError } = useContext(AppContext);
+    const navigate = useNavigate();
 
-    const [gameId, setGameId] = useState('');
+    //const [gameId, setGameId] = useState('');
 
     // const ping = (msg) => {
     //     socket.emit('pingSocket', msg);
@@ -50,7 +52,11 @@ const CreateJoinPage = () => {
                                         console.log('Error creating game');
                                     }
                                 })
-                                .then((data) => console.log(data));
+                                .then((data) => {
+                                    console.log('EG Data: ', data.id);
+                                    setGameId(data.id);
+                                    navigate('/lobby');
+                                });
                         }}
                     >
                         CREATE GAME
@@ -67,7 +73,10 @@ const CreateJoinPage = () => {
                                         );
                                     }
                                 })
-                                .then((data) => console.log(data));
+                                .then((data) => {
+                                    console.log(data);
+                                    navigate('./lobby');
+                                });
                         }}
                     >
                         JOIN GAME

@@ -14,6 +14,7 @@ const ApplicationInput = (props) => {
                 className={styles.input}
                 value={props.value}
                 onChange={handleChange}
+                readOnly={props.readOnly}
             />
         </div>
     );

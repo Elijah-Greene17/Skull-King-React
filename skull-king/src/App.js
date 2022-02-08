@@ -17,6 +17,7 @@ function App() {
     */
     const [name, setName] = useState('');
     const [host, setHost] = useState('');
+    const [gameId, setGameId] = useState('');
 
     const showError = (text) => {
         toast.error(text, {
@@ -34,7 +35,15 @@ function App() {
 
     return (
         <AppContext.Provider
-            value={{ name, setName, host, setHost, showError }}
+            value={{
+                name,
+                setName,
+                host,
+                setHost,
+                showError,
+                gameId,
+                setGameId,
+            }}
         >
             <Router>
                 <Routes>
