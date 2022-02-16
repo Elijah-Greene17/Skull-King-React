@@ -15,9 +15,11 @@ function App() {
         userId
         
     */
+    const [id, setId] = useState(-1);
     const [name, setName] = useState('');
     const [host, setHost] = useState('');
     const [gameId, setGameId] = useState('');
+    const [playerList, setPlayerList] = useState([]);
 
     const showError = (text) => {
         toast.error(text, {
@@ -36,6 +38,8 @@ function App() {
     return (
         <AppContext.Provider
             value={{
+                id,
+                setId,
                 name,
                 setName,
                 host,
@@ -43,6 +47,8 @@ function App() {
                 showError,
                 gameId,
                 setGameId,
+                playerList,
+                setPlayerList,
             }}
         >
             <Router>

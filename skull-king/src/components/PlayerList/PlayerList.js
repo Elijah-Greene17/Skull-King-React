@@ -7,7 +7,7 @@ const PlayerList = (props) => {
         <div className={styles.playerList}>
             {props.players.map((player) => (
                 <Label className={styles.listItem} key={player.id}>
-                    {player.name}
+                    {player.name} {player.id}
                 </Label>
             ))}
         </div>

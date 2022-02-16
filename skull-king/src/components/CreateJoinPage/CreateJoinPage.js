@@ -74,8 +74,12 @@ const CreateJoinPage = () => {
                                     }
                                 })
                                 .then((data) => {
-                                    console.log(data);
-                                    navigate('./lobby');
+                                    console.log(data.idExists);
+                                    if (data.idExists) {
+                                        navigate('/lobby');
+                                    } else {
+                                        console.log('ID does not exist');
+                                    }
                                 });
                         }}
                     >

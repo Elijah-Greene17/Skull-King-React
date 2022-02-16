@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../Contexts/AppContext';
 import PlayerList from '../PlayerList/PlayerList';
 import Button from '../UI/Button/Button';
@@ -9,37 +9,59 @@ import styles from './GameLobbyPage.module.css';
 import socket from '../../Socket/Socket';
 
 const GameLobbyPage = () => {
-    const { gameId } = useContext(AppContext);
+    const {
+        id,
+        setId,
+        name,
+        gameId,
+        host,
+        setHost,
+        playerList,
+        setPlayerList,
+    } = useContext(AppContext);
 
     useEffect(() => {
+        // Test Connection with Socket
         socket.emit('pingSocket', 'Hello from React');
+
+        // Join room *Will create new if doesn't exist*
         console.log('Attepting to join room with id', gameId);
-        socket.emit('joinRoom', gameId);
+        const data = {
+            gameId: gameId,
+            name: name,
+        };
+        socket.emit('joinGame', data);
+
+        // Client Listeners
+        socket.on('pingClient', (msg) => {
+            console.log('New Message: ', msg);
+        });
+
+        socket.on('setPlayerId', (playerId) => {
+            setId(playerId);
+        });
+
+        socket.on('gameJoined', (data) => {
+            console.log('game Joined Data: ', data);
+            setPlayerList(data.playerList);
+            setHost(data.playerList[0]);
+        });
     }, []);
 
     return (
         <MainView>
             <div className={styles.gameLobbyPage}>
                 <TitleHeader>Skull King</TitleHeader>
-                <PlayerList
-                    players={[
-                        { id: 1, name: 'Elijah' },
-                        { id: 2, name: 'Bridget' },
-                        { id: 3, name: 'Mitchell' },
-                        { id: 4, name: 'Hortense' },
-                        { id: 5, name: 'Ally' },
-                        { id: 6, name: 'Forrest' },
-                        { id: 7, name: 'Veronica' },
-                        { id: 8, name: 'John' },
-                        { id: 9, name: 'Norm' },
-                        { id: 10, name: 'Stove' },
-                    ]}
-                />
+                <PlayerList players={playerList} />
                 <div>
                     <ApplicationInput value={gameId} readOnly={true}>
-                        Invite Code
+                        Invite Code {id}
                     </ApplicationInput>
-                    <Button className={styles.button}>Start</Button>
+
+                    {id === host.id && (
+                        <Button className={styles.button}>Start</Button>
+                    )}
+                    {/* TODO: Make text waiting for host to start game */}
                 </div>
             </div>
         </MainView>
