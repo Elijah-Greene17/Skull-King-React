@@ -46,6 +46,12 @@ const GameLobbyPage = () => {
             setPlayerList(data.playerList);
             setHost(data.playerList[0]);
         });
+
+        socket.on('removePlayer', (data) => {
+            console.log('removing player');
+            setPlayerList(data.playerList);
+            setHost(data.playerList[0]);
+        });
     }, []);
 
     return (
