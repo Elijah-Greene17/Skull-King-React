@@ -49,8 +49,8 @@ const GameLobbyPage = () => {
 
         socket.on('removePlayer', (data) => {
             console.log('removing player');
-            setPlayerList(data.playerList);
-            setHost(data.playerList[0]);
+            setPlayerList(data.players);
+            setHost(data.players[0]);
         });
     }, []);
 
