@@ -7,6 +7,8 @@ import styles from './App.module.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppContext } from './Contexts/AppContext';
 import { toast } from 'react-toastify';
+import BidPage from './components/BidPage/BidPage';
+import ScorecardPage from './components/ScorecardPage/ScorecardPage';
 
 function App() {
     /* Variables:
@@ -20,6 +22,8 @@ function App() {
     const [host, setHost] = useState('');
     const [gameId, setGameId] = useState('');
     const [playerList, setPlayerList] = useState([]);
+    const [currentRound, setCurrentRound] = useState(0);
+    const [scoreboard, setScoreboard] = useState({});
 
     const showError = (text) => {
         toast.error(text, {
@@ -49,6 +53,10 @@ function App() {
                 setGameId,
                 playerList,
                 setPlayerList,
+                currentRound,
+                setCurrentRound,
+                scoreboard,
+                setScoreboard,
             }}
         >
             <Router>
@@ -56,6 +64,8 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/createjoin" element={<CreateJoinPage />} />
                     <Route path="/lobby" element={<GameLobbyPage />} />
+                    <Route path="/bid" element={<BidPage />} />
+                    <Route path="/scorecard" element={<ScorecardPage />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </Router>

@@ -1,0 +1,16 @@
+@font-face {
+    font-family: poppins;
+    src: url('../UI/aaFonts/poppins/Poppins-Bold.ttf');
+}
+
+.scoreCard {
+    font-family: poppins;
+    font-size: 20px;
+    color: #ffffff;
+    width: 80%;
+}
+
+.scoreCard td {
+    width: 20%;
+    padding-bottom: 20px;
+}

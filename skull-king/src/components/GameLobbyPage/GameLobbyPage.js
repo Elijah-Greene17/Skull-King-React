@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../Contexts/AppContext';
 import PlayerList from '../PlayerList/PlayerList';
 import Button from '../UI/Button/Button';
@@ -18,7 +19,10 @@ const GameLobbyPage = () => {
         setHost,
         playerList,
         setPlayerList,
+        setCurrentRound,
+        setScoreboard,
     } = useContext(AppContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Test Connection with Socket
@@ -52,6 +56,13 @@ const GameLobbyPage = () => {
             setPlayerList(data.players);
             setHost(data.players[0]);
         });
+
+        socket.on('start', (data) => {
+            console.log('Starting Game: ', data);
+            setCurrentRound(data.currentRound);
+            setScoreboard(data.scoreBoard);
+            navigate('/bid');
+        });
     }, []);
 
     return (
@@ -65,7 +76,17 @@ const GameLobbyPage = () => {
                     </ApplicationInput>
 
                     {id === host.id && (
-                        <Button className={styles.button}>Start</Button>
+                        <Button
+                            className={styles.button}
+                            onClick={() => {
+                                const data = {
+                                    gameId: gameId,
+                                };
+                                socket.emit('start', data);
+                            }}
+                        >
+                            Start
+                        </Button>
                     )}
                     {/* TODO: Make text waiting for host to start game */}
                 </div>
