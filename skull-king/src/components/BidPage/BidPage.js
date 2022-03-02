@@ -9,14 +9,16 @@ import TitleHeader from '../UI/TitleHeader/TitleHeader';
 import styles from './BidPage.module.css';
 
 const BidPage = () => {
-    const { id, gameId, currentRound } = useContext(AppContext);
+    const { id, gameId, currentRound, setScoreboard } = useContext(AppContext);
     const navigate = useNavigate();
 
     const [bid, setBid] = useState();
 
     useEffect(() => {
         socket.on('bidsAreIn', (data) => {
-            navigate('/');
+            console.log('DATA.SCOREBOARD: ', data.scoreBoard);
+            setScoreboard(data.scoreBoard);
+            navigate('/scorecard');
         });
     }, []);
 

@@ -1,13 +1,24 @@
 import styles from './Scorecard.module.css';
+import { useContext } from 'react';
+import { AppContext } from '../../Contexts/AppContext';
 
 const Scorecard = () => {
+    const { currentRound, scoreboard } = useContext(AppContext);
+    console.log('SCOREBOARDSS: ', scoreboard);
+
     return (
         <table className={styles.scoreCard}>
             <Row name="Player" bid="Bid" score="Score" />
             <Row />
-            <Row name="Elijah" bid="4" score="230" />
-            <Row name="Elijah" bid="4" score="230" />
-            <Row name="Elijah" bid="4" score="230" />
+            {scoreboard.players.map((player) => {
+                return (
+                    <Row
+                        name={player.name}
+                        bid={player.boxes[currentRound - 1].bid}
+                        score={player.score}
+                    />
+                );
+            })}
         </table>
     );
 };

@@ -13,3 +13,15 @@
     justify-content: space-around;
     align-items: center;
 }
+
+.pirates {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.pirateButton {
+    background-color: #ffa944;
+    width: 40%;
+}

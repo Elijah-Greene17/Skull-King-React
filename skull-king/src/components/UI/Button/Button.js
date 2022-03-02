@@ -1,6 +1,8 @@
 import styles from './Button.module.css';
 
 const Button = (props) => {
+    console.log('props.classname: ', props.className);
+
     return (
         <button
             className={`${styles.button} ${props.className}`}
