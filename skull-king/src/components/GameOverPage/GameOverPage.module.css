@@ -1,4 +1,4 @@
-.gameLobbyPage {
+.gameOverPage {
     min-height: 90vh;
     max-height: 90vh;
     min-width: 100vw;
@@ -12,13 +12,4 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-}
-
-.button {
-    margin-top: 30px;
-}
-
-.waitingLabel{
-    margin-top: 10px;
-    color: #fff544
 }

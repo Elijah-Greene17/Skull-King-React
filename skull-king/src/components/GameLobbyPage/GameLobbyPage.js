@@ -8,6 +8,7 @@ import MainView from '../UI/MainView/MainView';
 import TitleHeader from '../UI/TitleHeader/TitleHeader';
 import styles from './GameLobbyPage.module.css';
 import socket from '../../Socket/Socket';
+import Label from '../UI/Label/Label';
 
 const GameLobbyPage = () => {
     const {
@@ -75,7 +76,7 @@ const GameLobbyPage = () => {
                         Invite Code {id}
                     </ApplicationInput>
 
-                    {id === host.id && (
+                    {id === host.id ? (
                         <Button
                             className={styles.button}
                             onClick={() => {
@@ -87,8 +88,11 @@ const GameLobbyPage = () => {
                         >
                             Start
                         </Button>
+                    ) : (
+                        <Label className={styles.waitingLabel}>
+                            Waiting for host...
+                        </Label>
                     )}
-                    {/* TODO: Make text waiting for host to start game */}
                 </div>
             </div>
         </MainView>

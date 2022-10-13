@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import MainView from '../UI/MainView/MainView';
 import Scorecard from './Scorecard';
 import Button from '../UI/Button/Button';
@@ -5,6 +6,12 @@ import styles from './ScorecardPage.module.css';
 import { AppContext } from '../../Contexts/AppContext';
 
 const ScorecardPage = () => {
+    const navigate = useNavigate();
+
+    const handleCalculateScore = () => {
+        navigate('/calculatescore');
+    };
+
     return (
         <MainView>
             <div className={styles.scorecardPage}>
@@ -15,7 +22,9 @@ const ScorecardPage = () => {
                         <Button className={styles.pirateButton}>Rascal</Button>
                     </div>
                     <div>
-                        <Button>Calculate Score</Button>
+                        <Button onClick={handleCalculateScore}>
+                            Calculate Score
+                        </Button>
                     </div>
                 </div>
             </div>

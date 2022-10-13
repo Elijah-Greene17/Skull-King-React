@@ -3,6 +3,8 @@ import HomePage from './components/HomePage/HomePage';
 import CreateJoinPage from './components/CreateJoinPage/CreateJoinPage';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
+import CalculateScorePage from './components/CalculateScorePage/CalculateScorePage';
+import GameOverPage from './components/GameOverPage/GameOverPage';
 import styles from './App.module.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppContext } from './Contexts/AppContext';
@@ -66,6 +68,11 @@ function App() {
                     <Route path="/lobby" element={<GameLobbyPage />} />
                     <Route path="/bid" element={<BidPage />} />
                     <Route path="/scorecard" element={<ScorecardPage />} />
+                    <Route
+                        path="/calculatescore"
+                        element={<CalculateScorePage />}
+                    />
+                    <Route path="/gameover" element={<GameOverPage />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </Router>

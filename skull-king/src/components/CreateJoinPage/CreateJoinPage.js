@@ -27,9 +27,12 @@ const CreateJoinPage = () => {
             <div className={styles.createJoinPage}>
                 <TitleHeader>Ahoy, {name}!</TitleHeader>
                 <ApplicationInput
+                    value={gameId}
                     onChange={(value) => {
-                        setGameId(value);
+                        setGameId(value.toUpperCase());
                     }}
+                    case="upper"
+                    maxLength={4}
                 >
                     Enter a Server Code
                 </ApplicationInput>

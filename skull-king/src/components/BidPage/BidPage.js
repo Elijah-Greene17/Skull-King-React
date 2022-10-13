@@ -27,21 +27,26 @@ const BidPage = () => {
             <div className={styles.bidPage}>
                 <TitleHeader>Round {currentRound}</TitleHeader>
                 <ApplicationInput
-                    // value={bid}
                     onChange={(value) => {
                         setBid(value);
                     }}
+                    maxLength={2}
+                    type="number"
                 >
                     Input Bid
                 </ApplicationInput>
                 <Button
                     onClick={() => {
-                        const data = {
-                            playerId: id,
-                            gameId: gameId,
-                            bid: bid,
-                        };
-                        socket.emit('bid', data);
+                        if (isNaN(bid)) {
+                            console.log('Error, the bid is not a number');
+                        } else {
+                            const data = {
+                                playerId: id,
+                                gameId: gameId,
+                                bid: bid,
+                            };
+                            socket.emit('bid', data);
+                        }
                     }}
                 >
                     BID
