@@ -1,4 +1,4 @@
-.bidPage {
+.harryPage {
     min-height: 90vh;
     max-height: 90vh;
     min-width: 100vw;
@@ -14,7 +14,17 @@
     align-items: center;
 }
 
-.waitingLabel{
-    margin-top: 10px;
-    color: #fff544
+.pirates {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.pirateButton {
+    background-color: #ffa944;
+    width: 20%;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }

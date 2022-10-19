@@ -1,4 +1,4 @@
-.bidPage {
+.leaderBoardPage {
     min-height: 90vh;
     max-height: 90vh;
     min-width: 100vw;
@@ -14,7 +14,23 @@
     align-items: center;
 }
 
+.button {
+    margin-top: 30px;
+}
+
 .waitingLabel{
     margin-top: 10px;
     color: #fff544
+}
+
+.scoreCard {
+    font-family: poppins;
+    font-size: 20px;
+    color: #ffffff;
+    width: 80%;
+}
+
+.scoreCard td {
+    width: 20%;
+    padding-bottom: 20px;
 }

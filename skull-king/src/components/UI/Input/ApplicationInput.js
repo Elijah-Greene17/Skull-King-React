@@ -16,6 +16,7 @@ const ApplicationInput = (props) => {
                 onChange={handleChange}
                 readOnly={props.readOnly}
                 maxLength={props.maxLength}
+                disabled={props.disabled}
             />
         </div>
     );

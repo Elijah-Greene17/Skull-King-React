@@ -18,7 +18,15 @@ const ScorecardPage = () => {
                 <Scorecard />
                 <div>
                     <div className={styles.pirates}>
-                        <Button className={styles.pirateButton}>Harry</Button>
+                        <Button
+                            onClick={() => {
+                                console.log('harry');
+                                navigate('/harry');
+                            }}
+                            className={styles.pirateButton}
+                        >
+                            Harry
+                        </Button>
                         <Button className={styles.pirateButton}>Rascal</Button>
                     </div>
                     <div>

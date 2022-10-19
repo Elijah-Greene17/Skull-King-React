@@ -6,47 +6,32 @@ import Button from '../UI/Button/Button';
 import { useContext, useState } from 'react';
 import { AppContext } from '../../Contexts/AppContext';
 import socket from '../../Socket/Socket';
+import { useNavigate } from 'react-router-dom';
 
 const CalculateScorePage = () => {
-    const { id, currentRound, scoreboard } = useContext(AppContext);
+    const { id, gameId, currentRound, scoreboard } = useContext(AppContext);
     const [tricks, setTricks] = useState();
     const [bonus, setBonus] = useState(0);
+    const navigate = useNavigate();
 
     const calculateScore = () => {
-        const pBid = getBid();
-        console.log(pBid);
-        // if (tricks && !isNaN(tricks) && !isNaN(bonus)) {
-        //     if (!bonus) {
-        //         setBonus(0);
-        //     }
-        //     const data = {
-        //         playerId: id,
-        //         gameId,
-        //         tricks,
-        //         bonus,
-        //     };
-        //     console.log('DATA: ', data);
-        //     socket.emit('calculate', data);
-        // } else {
-        //     console.log('Error with tricks and bonus');
-        // }
-    };
-
-    const getBid = () => {
-        const players = scoreboard.players;
-        let currentPlayer = null;
-        players.forEach((player) => {
-            if (id === player.id) {
-                currentPlayer = player;
-                console.log('playerFound');
-            } else {
-                console.log('player not found');
+        // const pBid = getBid();
+        // console.log(pBid);
+        if (tricks && !isNaN(tricks) && !isNaN(bonus)) {
+            if (!bonus) {
+                setBonus(0);
             }
-        });
-        if (currentPlayer) {
-            const box = currentPlayer.boxes[currentRound - 1];
-            console.log('BOX: ', box);
-            return parseInt(box.bid);
+            const data = {
+                playerId: id,
+                gameId,
+                tricks,
+                bonus,
+            };
+            console.log('DATA: ', data);
+            socket.emit('calculate', data);
+            navigate('/leaderboard');
+        } else {
+            console.log('Error with tricks and bonus');
         }
     };
 
