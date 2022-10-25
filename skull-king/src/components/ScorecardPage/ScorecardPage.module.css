@@ -25,3 +25,10 @@
     background-color: #ffa944;
     width: 40%;
 }
+
+.pirateButtonDisabled {
+    background-color: #ffa944;
+    width: 40%;
+    opacity: 0.25;
+    pointer-events: none;
+}

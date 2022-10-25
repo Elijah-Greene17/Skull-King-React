@@ -37,19 +37,15 @@ const HarryPage = () => {
     };
 
     const handleButtonSubmit = () => {
-        if (
-            scoreboard.players[id].boxes[currentRound - 1].bid - bidToChange !=
-            0
-        ) {
-            const data = {
-                gameId: gameId,
-                playerId: id,
-                bidIncrement:
-                    bidToChange -
-                    scoreboard.players[id].boxes[currentRound - 1].bid,
-            };
-            socket.emit('harry', data);
-        }
+        const data = {
+            gameId: gameId,
+            playerId: id,
+            bidIncrement:
+                bidToChange -
+                scoreboard.players[id].boxes[currentRound - 1].bid,
+        };
+        console.log('Emitting Harry: ', data);
+        socket.emit('harry', data);
         navigate('/scorecard');
     };
 

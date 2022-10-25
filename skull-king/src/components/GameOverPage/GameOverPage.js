@@ -7,8 +7,10 @@ import Label from '../UI/Label/Label';
 import styles from './GameOverPage.module.css';
 import { useContext } from 'react';
 import { AppContext } from '../../Contexts/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 const GameOverPage = () => {
+    const navigate = useNavigate();
     const { winner } = useContext(AppContext);
 
     return (
@@ -20,7 +22,13 @@ const GameOverPage = () => {
                     <Label>{winner.score}</Label>
                 </div>
 
-                <Button onClick={() => {}}>HOME</Button>
+                <Button
+                    onClick={() => {
+                        navigate('/');
+                    }}
+                >
+                    HOME
+                </Button>
             </div>
         </MainView>
     );

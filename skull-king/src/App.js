@@ -29,6 +29,8 @@ function App() {
     const [currentRound, setCurrentRound] = useState(0);
     const [scoreboard, setScoreboard] = useState({});
     const [winner, setWinner] = useState({});
+    const [harryToggle, setHarryToggle] = useState(true);
+    const [rascalToggle, setRascalToggle] = useState(true);
 
     const showError = (text) => {
         toast.error(text, {
@@ -64,6 +66,10 @@ function App() {
                 setScoreboard,
                 winner,
                 setWinner,
+                harryToggle,
+                setHarryToggle,
+                rascalToggle,
+                setRascalToggle,
             }}
         >
             <Router>
