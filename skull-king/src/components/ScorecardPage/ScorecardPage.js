@@ -8,14 +8,24 @@ import { useEffect, useContext } from 'react';
 import socket from '../../Socket/Socket';
 
 const ScorecardPage = () => {
-    const { setScoreboard, harryToggle, setHarryToggle } =
-        useContext(AppContext);
+    const {
+        setScoreboard,
+        harryToggle,
+        setHarryToggle,
+        rascalToggle,
+        setRascalToggle,
+    } = useContext(AppContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         socket.on('harry', (data) => {
             setScoreboard(data.scoreBoard);
             setHarryToggle(false);
+        });
+
+        socket.on('rascal', (data) => {
+            // setHarryToggle(false);
+            setRascalToggle(false);
         });
     }, []);
 
@@ -31,7 +41,6 @@ const ScorecardPage = () => {
                     <div className={styles.pirates}>
                         <Button
                             onClick={() => {
-                                console.log('harry');
                                 navigate('/harry');
                             }}
                             className={
@@ -43,7 +52,18 @@ const ScorecardPage = () => {
                             Harry
                         </Button>
 
-                        <Button className={styles.pirateButton}>Rascal</Button>
+                        <Button
+                            onClick={() => {
+                                navigate('/rascal');
+                            }}
+                            className={
+                                rascalToggle
+                                    ? styles.pirateButton
+                                    : styles.pirateButtonDisabled
+                            }
+                        >
+                            Rascal
+                        </Button>
                     </div>
                     <div>
                         <Button onClick={handleCalculateScore}>

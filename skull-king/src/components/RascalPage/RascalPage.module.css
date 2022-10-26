@@ -1,4 +1,4 @@
-.harryPage {
+.rascalPage {
     min-height: 90vh;
     max-height: 90vh;
     min-width: 100vw;
@@ -23,7 +23,16 @@
 
 .pirateButton {
     background-color: #ffa944;
-    width: 20%;
+    width: 80px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    opacity: 0.3;
+}
+
+.pirateButtonSelected {
+    background-color: #ffa944;
+    width: 80px;
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;

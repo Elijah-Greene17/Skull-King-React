@@ -26,6 +26,7 @@ const LeaderBoardPage = () => {
         setScoreboard,
         setWinner,
         setHarryToggle,
+        setRascalToggle,
     } = useContext(AppContext);
     const navigate = useNavigate();
 
@@ -43,6 +44,7 @@ const LeaderBoardPage = () => {
                 navigate('/gameover');
             } else if (data.roundIsOver) {
                 setHarryToggle(true);
+                setRascalToggle(true);
                 setCurrentRound(currentRound + 1);
                 navigate('/bid');
             } else {
