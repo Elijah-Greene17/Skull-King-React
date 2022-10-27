@@ -73,7 +73,7 @@ const GameLobbyPage = () => {
                 <PlayerList players={playerList} />
                 <div>
                     <ApplicationInput value={gameId} readOnly={true}>
-                        Invite Code {id}
+                        Invite Code
                     </ApplicationInput>
 
                     {id === host.id ? (

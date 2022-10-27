@@ -11,7 +11,6 @@ import RascalPage from './components/RascalPage/RascalPage';
 import styles from './App.module.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppContext } from './Contexts/AppContext';
-import { toast } from 'react-toastify';
 import BidPage from './components/BidPage/BidPage';
 import ScorecardPage from './components/ScorecardPage/ScorecardPage';
 
@@ -33,20 +32,6 @@ function App() {
     const [harryToggle, setHarryToggle] = useState(true);
     const [rascalToggle, setRascalToggle] = useState(true);
 
-    const showError = (text) => {
-        toast.error(text, {
-            position: 'bottom-center',
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: 'dark',
-            icon: false,
-        });
-    };
-
     return (
         <AppContext.Provider
             value={{
@@ -56,7 +41,6 @@ function App() {
                 setName,
                 host,
                 setHost,
-                showError,
                 gameId,
                 setGameId,
                 playerList,

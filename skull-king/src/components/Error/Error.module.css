@@ -1,0 +1,16 @@
+.error {
+    font-family: poppins;
+    font-size: 24px;
+    color: black;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    background-color: #8BCD50;
+    opacity: 0.8;
+    width: 80%;
+    border-radius: 12px;
+}
+
+.hidden {
+    display: none;
+}

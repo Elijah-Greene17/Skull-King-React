@@ -8,24 +8,26 @@ import styles from './HomePage.module.css';
 import { AppContext } from '../../Contexts/AppContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Error from '../Error/Error';
 
 toast.configure();
 
 const HomePage = () => {
-    const { name, setName, showError } = useContext(AppContext);
+    const { name, setName } = useContext(AppContext);
     const navigate = useNavigate();
 
     const handlePlay = () => {
         if (name.length > 0) {
             navigate('/createjoin');
         } else {
-            showError('Please enter your name');
+            console.log('Error: Please enter your name');
         }
     };
 
     return (
         <MainView>
             <div className={styles.homePage}>
+                <Error message="Please enter your name" hidden />
                 <TitleHeader>Skull King</TitleHeader>
                 <ApplicationInput
                     onChange={(value) => {

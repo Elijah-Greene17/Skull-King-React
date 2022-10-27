@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 const CreateJoinPage = () => {
-    const { name, gameId, setGameId, showError } = useContext(AppContext);
+    const { name, gameId, setGameId } = useContext(AppContext);
     const navigate = useNavigate();
 
     //const [gameId, setGameId] = useState('');

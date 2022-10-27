@@ -9,14 +9,12 @@ import socket from '../../Socket/Socket';
 import { useNavigate } from 'react-router-dom';
 
 const CalculateScorePage = () => {
-    const { id, gameId, currentRound, scoreboard } = useContext(AppContext);
+    const { id, gameId } = useContext(AppContext);
     const [tricks, setTricks] = useState();
     const [bonus, setBonus] = useState(0);
     const navigate = useNavigate();
 
     const calculateScore = () => {
-        // const pBid = getBid();
-        // console.log(pBid);
         if (tricks && !isNaN(tricks) && !isNaN(bonus)) {
             if (!bonus) {
                 setBonus(0);
@@ -25,9 +23,8 @@ const CalculateScorePage = () => {
                 playerId: id,
                 gameId,
                 tricks,
-                bonus,
+                bonus: parseInt(bonus),
             };
-            console.log('DATA: ', data);
             socket.emit('calculate', data);
             navigate('/leaderboard');
         } else {
@@ -55,9 +52,20 @@ const CalculateScorePage = () => {
                     </SecondaryHeader>
                     <ApplicationInput
                         value={bonus}
+                        onClick={(value) => {
+                            if (value === '0') {
+                                setBonus('');
+                            }
+                        }}
                         onChange={(value) => {
                             setBonus(value);
                         }}
+                        onBlur={(value) => {
+                            if (value === '') {
+                                setBonus(0);
+                            }
+                        }}
+                        maxLength={3}
                     />
                 </div>
                 <Button onClick={calculateScore}>NEXT</Button>
