@@ -40,6 +40,8 @@ const LeaderBoardPage = () => {
         });
 
         socket.on('isRoundOver', (data) => {
+            console.log('DATA: ', data);
+            setScoreboard(data.scoreBoard);
             if (data.gameIsOver) {
                 navigate('/gameover');
             } else if (data.roundIsOver) {

@@ -29,6 +29,7 @@ function App() {
     const [currentRound, setCurrentRound] = useState(0);
     const [scoreboard, setScoreboard] = useState({});
     const [winner, setWinner] = useState({});
+    const [error, setError] = useState('');
     const [harryToggle, setHarryToggle] = useState(true);
     const [rascalToggle, setRascalToggle] = useState(true);
 
@@ -51,6 +52,8 @@ function App() {
                 setScoreboard,
                 winner,
                 setWinner,
+                error,
+                setError,
                 harryToggle,
                 setHarryToggle,
                 rascalToggle,

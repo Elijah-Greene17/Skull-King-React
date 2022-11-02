@@ -8,17 +8,19 @@ import ApplicationInput from '../UI/Input/ApplicationInput';
 import MainView from '../UI/MainView/MainView';
 import TitleHeader from '../UI/TitleHeader/TitleHeader';
 import styles from './BidPage.module.css';
+import Error from '../Error/Error';
 
 const BidPage = () => {
-    const { id, gameId, currentRound, setScoreboard } = useContext(AppContext);
+    const { id, gameId, currentRound, setScoreboard, error, setError } =
+        useContext(AppContext);
     const navigate = useNavigate();
 
-    const [bid, setBid] = useState();
+    const [bid, setBid] = useState('');
     const [bidEntered, setBidEntered] = useState(false);
 
     useEffect(() => {
         socket.on('bidsAreIn', (data) => {
-            console.log('DATA.SCOREBOARD: ', data.scoreBoard);
+            setError('');
             setScoreboard(data.scoreBoard);
             navigate('/scorecard');
         });
@@ -27,13 +29,13 @@ const BidPage = () => {
     return (
         <MainView>
             <div className={styles.bidPage}>
+                <Error message={error} hidden={error.length === 0} />
                 <TitleHeader>Round {currentRound}</TitleHeader>
                 <ApplicationInput
                     onChange={(value) => {
                         setBid(value);
                     }}
                     maxLength={2}
-                    type="number"
                 >
                     Input Bid
                 </ApplicationInput>
@@ -42,9 +44,12 @@ const BidPage = () => {
                 ) : (
                     <Button
                         onClick={() => {
-                            if (isNaN(bid)) {
-                                console.log('Error, the bid is not a number');
+                            if (bid.length === 0) {
+                                setError('Please enter a bid');
+                            } else if (isNaN(bid)) {
+                                setError('The bid is not a number');
                             } else {
+                                setError('');
                                 const data = {
                                     playerId: id,
                                     gameId: gameId,

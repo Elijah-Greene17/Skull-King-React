@@ -4,7 +4,6 @@ import { AppContext } from '../../Contexts/AppContext';
 
 const Scorecard = () => {
     const { currentRound, scoreboard } = useContext(AppContext);
-    console.log('SCOREBOARDSS: ', scoreboard);
 
     return (
         <table className={styles.scoreCard}>

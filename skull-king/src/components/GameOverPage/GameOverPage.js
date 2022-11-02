@@ -5,22 +5,43 @@ import SecondaryHeader from '../UI/TitleHeader/TitleHeader';
 import WinnerLabel from '../UI/Label/WinnerLabel';
 import Label from '../UI/Label/Label';
 import styles from './GameOverPage.module.css';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../Contexts/AppContext';
 import { useNavigate } from 'react-router-dom';
+import Scorecard from '../ScorecardPage/Scorecard';
 
 const GameOverPage = () => {
     const navigate = useNavigate();
-    const { winner } = useContext(AppContext);
+    const [leaders, setLeaders] = useState([]);
+    const { winner, scoreboard } = useContext(AppContext);
+
+    useEffect(() => {
+        const john = scoreboard.players;
+        setLeaders([...john].sort((a, b) => b.score - a.score));
+    }, []);
 
     return (
         <MainView>
             <div className={styles.gameOverPage}>
-                <TitleHeader>Winner</TitleHeader>
-                <div>
+                <TitleHeader>Results</TitleHeader>
+                <table className={styles.scoreCard}>
+                    {/* <Row name="Player" score="Score" /> */}
+                    <Row />
+                    {leaders.map((player, ind) => {
+                        return (
+                            <Row
+                                rank={ind + 1}
+                                name={player.name}
+                                score={player.score}
+                                key={player.id}
+                            />
+                        );
+                    })}
+                </table>
+                {/* <div>
                     <WinnerLabel>{winner.name}</WinnerLabel>
                     <Label>{winner.score}</Label>
-                </div>
+                </div> */}
 
                 <Button
                     onClick={() => {
@@ -31,6 +52,16 @@ const GameOverPage = () => {
                 </Button>
             </div>
         </MainView>
+    );
+};
+
+const Row = ({ rank, name, score }) => {
+    return (
+        <tr>
+            <td>{rank}</td>
+            <td className={styles.name}>{name}</td>
+            <td>{score}</td>
+        </tr>
     );
 };
 

@@ -7,15 +7,17 @@ import { useContext, useState } from 'react';
 import { AppContext } from '../../Contexts/AppContext';
 import socket from '../../Socket/Socket';
 import { useNavigate } from 'react-router-dom';
+import Error from '../Error/Error';
 
 const CalculateScorePage = () => {
-    const { id, gameId } = useContext(AppContext);
+    const { id, gameId, error, setError } = useContext(AppContext);
     const [tricks, setTricks] = useState();
     const [bonus, setBonus] = useState(0);
     const navigate = useNavigate();
 
     const calculateScore = () => {
         if (tricks && !isNaN(tricks) && !isNaN(bonus)) {
+            setError('');
             if (!bonus) {
                 setBonus(0);
             }
@@ -28,13 +30,20 @@ const CalculateScorePage = () => {
             socket.emit('calculate', data);
             navigate('/leaderboard');
         } else {
-            console.log('Error with tricks and bonus');
+            if (!tricks) {
+                setError('Please enter the amount of tricks you won');
+            } else if (isNaN(tricks)) {
+                setError('The amount of tricks is not a number');
+            } else if (isNaN(bonus)) {
+                setError('The bonus points is not a number');
+            }
         }
     };
 
     return (
         <MainView>
             <div className={styles.calculateScorePage}>
+                <Error message={error} hidden={error.length === 0} />
                 <div>
                     <SecondaryHeader>
                         How many tricks did you win?

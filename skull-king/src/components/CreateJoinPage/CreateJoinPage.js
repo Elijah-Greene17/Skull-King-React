@@ -8,23 +8,19 @@ import TitleHeader from '../UI/TitleHeader/TitleHeader';
 import styles from './CreateJoinPage.module.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Error from '../Error/Error';
 // import socket from '../../Socket/Socket';
 
 toast.configure();
 
 const CreateJoinPage = () => {
-    const { name, gameId, setGameId } = useContext(AppContext);
+    const { name, gameId, setGameId, error, setError } = useContext(AppContext);
     const navigate = useNavigate();
-
-    //const [gameId, setGameId] = useState('');
-
-    // const ping = (msg) => {
-    //     socket.emit('pingSocket', msg);
-    // };
 
     return (
         <MainView>
             <div className={styles.createJoinPage}>
+                <Error message={error} hidden={error.length === 0} />
                 <TitleHeader>Ahoy, {name}!</TitleHeader>
                 <ApplicationInput
                     value={gameId}
@@ -58,6 +54,7 @@ const CreateJoinPage = () => {
                                 .then((data) => {
                                     console.log('EG Data: ', data.id);
                                     setGameId(data.id);
+                                    setError('');
                                     navigate('/lobby');
                                 });
                         }}
@@ -71,17 +68,16 @@ const CreateJoinPage = () => {
                                     if (res.ok) {
                                         return res.json();
                                     } else {
-                                        console.log(
-                                            'Error searching for game Id'
-                                        );
+                                        setError('Could not find server code');
                                     }
                                 })
                                 .then((data) => {
                                     console.log(data.idExists);
                                     if (data.idExists) {
+                                        setError('');
                                         navigate('/lobby');
                                     } else {
-                                        console.log('ID does not exist');
+                                        setError('Could not find server code');
                                     }
                                 });
                         }}

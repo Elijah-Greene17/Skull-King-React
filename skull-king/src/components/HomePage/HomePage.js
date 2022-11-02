@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MainView from '../UI/MainView/MainView';
 import TitleHeader from '../UI/TitleHeader/TitleHeader';
@@ -13,26 +13,28 @@ import Error from '../Error/Error';
 toast.configure();
 
 const HomePage = () => {
-    const { name, setName } = useContext(AppContext);
+    const { name, setName, error, setError } = useContext(AppContext);
     const navigate = useNavigate();
 
     const handlePlay = () => {
         if (name.length > 0) {
+            setError('');
             navigate('/createjoin');
         } else {
-            console.log('Error: Please enter your name');
+            setError('Please enter your name');
         }
     };
 
     return (
         <MainView>
             <div className={styles.homePage}>
-                <Error message="Please enter your name" hidden />
+                <Error message={error} hidden={error.length === 0} />
                 <TitleHeader>Skull King</TitleHeader>
                 <ApplicationInput
                     onChange={(value) => {
                         setName(value);
                     }}
+                    maxLength={20}
                 >
                     Enter your name
                 </ApplicationInput>

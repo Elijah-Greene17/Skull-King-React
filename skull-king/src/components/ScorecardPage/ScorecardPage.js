@@ -25,6 +25,7 @@ const ScorecardPage = () => {
 
         socket.on('rascal', (data) => {
             // setHarryToggle(false);
+            setScoreboard(data.scoreBoard);
             setRascalToggle(false);
         });
     }, []);
