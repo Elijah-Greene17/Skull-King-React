@@ -1,0 +1,16 @@
+10/25 + Harry Functionality
+10/26 + Rascal Functionality
+10/27 + Bonus Points Functionality
+
+11/01 + Error Functionality
+11/02 + Winner Page show all scores
+
++ Method for fixing mistakes
+- API to modify a specific player score (+ or - amount)
+- Look into Ionic
+- Go through server, make unbreakable
+- Test game deletions
+
+
+
+
