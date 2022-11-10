@@ -1,0 +1,9 @@
+.error {
+    position: absolute;
+    top: 0;
+    background-color: blue;
+    opacity: 70%;
+    width: 80%;
+    border-radius: 0 0 10px 10px;
+    font-family: poppins;
+}
