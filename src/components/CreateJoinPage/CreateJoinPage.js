@@ -35,15 +35,18 @@ const CreateJoinPage = () => {
                 <div>
                     <Button
                         onClick={() => {
-                            fetch('http://server-skull-king.herokuapp.com/createNewGame', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    name: name,
-                                }),
-                            })
+                            fetch(
+                                'https://server-skull-king.herokuapp.com/createNewGame',
+                                {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({
+                                        name: name,
+                                    }),
+                                }
+                            )
                                 .then((res) => {
                                     if (res.ok) {
                                         return res.json();
@@ -63,7 +66,9 @@ const CreateJoinPage = () => {
                     </Button>
                     <Button
                         onClick={() => {
-                            fetch(`http://server-skull-king.herokuapp.com/idExists/${gameId}`)
+                            fetch(
+                                `https://server-skull-king.herokuapp.com/idExists/${gameId}`
+                            )
                                 .then((res) => {
                                     if (res.ok) {
                                         return res.json();
