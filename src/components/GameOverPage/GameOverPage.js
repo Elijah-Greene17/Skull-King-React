@@ -13,7 +13,20 @@ import Scorecard from '../ScorecardPage/Scorecard';
 const GameOverPage = () => {
     const navigate = useNavigate();
     const [leaders, setLeaders] = useState([]);
-    const { winner, scoreboard } = useContext(AppContext);
+    const {
+        setId,
+        setName,
+        setHost,
+        setGameId,
+        setPlayerList,
+        setCurrentRound,
+        scoreboard,
+        setScoreboard,
+        setWinner,
+        setError,
+        setHarryToggle,
+        setRascalToggle,
+    } = useContext(AppContext);
 
     useEffect(() => {
         const john = scoreboard.players;
@@ -45,6 +58,17 @@ const GameOverPage = () => {
 
                 <Button
                     onClick={() => {
+                        setId(-1);
+                        setName('');
+                        setHost('');
+                        setGameId('');
+                        setPlayerList([]);
+                        setCurrentRound(0);
+                        setScoreboard({});
+                        setWinner({});
+                        setError('');
+                        setHarryToggle(true);
+                        setRascalToggle(true);
                         navigate('/');
                     }}
                 >

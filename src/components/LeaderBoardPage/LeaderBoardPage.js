@@ -43,6 +43,8 @@ const LeaderBoardPage = () => {
             console.log('DATA: ', data);
             setScoreboard(data.scoreBoard);
             if (data.gameIsOver) {
+                setHarryToggle(true);
+                setRascalToggle(true);
                 navigate('/gameover');
             } else if (data.roundIsOver) {
                 setHarryToggle(true);
