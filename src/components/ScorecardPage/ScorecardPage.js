@@ -66,7 +66,7 @@ const ScorecardPage = () => {
                             Rascal
                         </Button>
                     </div>
-                    <div>
+                    <div className={styles.pirates}>
                         <Button onClick={handleCalculateScore}>
                             Calculate Score
                         </Button>
