@@ -11,7 +11,7 @@ import styles from './BidPage.module.css';
 import Error from '../Error/Error';
 
 const BidPage = () => {
-    const { id, gameId, currentRound, setScoreboard, error, setError } =
+    const { id, gameId, currentRound, scoreboard, setScoreboard, error, setError } =
         useContext(AppContext);
     const navigate = useNavigate();
 
@@ -22,6 +22,8 @@ const BidPage = () => {
         socket.on('bidsAreIn', (data) => {
             setError('');
             setScoreboard(data.scoreBoard);
+            localStorage.setItem('skScoreboard', data.scoreBoard)
+            console.log("EGGGGG: ", localStorage.getItem('skScoreboard'))
             navigate('/scorecard');
         });
     }, []);

@@ -9,15 +9,21 @@ const Scorecard = () => {
         <table className={styles.scoreCard}>
             <Row name="Player" bid="Bid" score="Score" />
             <Row />
-            {scoreboard.players.map((player) => {
-                return (
-                    <Row
-                        name={player.name}
-                        bid={player.boxes[currentRound - 1].bid}
-                        score={player.score}
-                    />
-                );
-            })}
+            {
+                scoreboard.players ?
+                    scoreboard.players.map((player) => {
+                        return (
+                            <Row
+                                name={player.name}
+                                bid={player.boxes[currentRound - 1].bid}
+                                score={player.score}
+                            />
+                        );
+                    })
+                    :
+                    ""
+
+            }
         </table>
     );
 };

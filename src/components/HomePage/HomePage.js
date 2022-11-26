@@ -33,6 +33,7 @@ const HomePage = () => {
                 <ApplicationInput
                     onChange={(value) => {
                         setName(value);
+                        localStorage.setItem('skName', value)
                     }}
                     maxLength={20}
                 >

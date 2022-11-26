@@ -39,17 +39,39 @@ const LeaderBoardPage = () => {
             setLeaders([...john].sort((a, b) => b.score - a.score));
         });
 
+        fetch(`https://server-skull-king.herokuapp.com/updateLeaderBoard/${localStorage.getItem('skGameId')}`)
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                }
+            })
+            .then((data) => {
+                if (data) {
+                    console.log("Success")
+                }
+            });
+
         socket.on('isRoundOver', (data) => {
             console.log('DATA: ', data);
             setScoreboard(data.scoreBoard);
+            console.log("EGGGGG: ", localStorage.getItem('skScoreboard'))
+            localStorage.setItem('skScoreboard', data.scoreBoard)
             if (data.gameIsOver) {
                 setHarryToggle(true);
+                localStorage.setItem('skHarryToggle', true)
                 setRascalToggle(true);
+                localStorage.setItem('skRascalToggle', true)
+                localStorage.removeItem('skGameId')
+                localStorage.removeItem('skPlayerId')
                 navigate('/gameover');
             } else if (data.roundIsOver) {
                 setHarryToggle(true);
+                localStorage.setItem('skHarryToggle', true)
                 setRascalToggle(true);
-                setCurrentRound(currentRound + 1);
+                localStorage.setItem('skRascalToggle', true)
+                localStorage.setItem('skCurrentRound', parseInt(currentRound) + 1)
+                setCurrentRound(parseInt(currentRound) + 1);
                 navigate('/bid');
             } else {
                 console.log('round not over');
@@ -61,6 +83,7 @@ const LeaderBoardPage = () => {
         if (leaders.length > 0) {
             console.log('LEADERS: ', leaders[0].name);
             setWinner(leaders[0]);
+            localStorage.setItem('skWinner', leaders[0])
         }
     }, [leaders]);
 
@@ -82,7 +105,7 @@ const LeaderBoardPage = () => {
                     })}
                 </table>
                 <div>
-                    {id === host.id ? (
+                    {id === host ? (
                         leaders.length === playerList.length ? (
                             <Button
                                 className={styles.button}

@@ -31,6 +31,17 @@ const GameOverPage = () => {
     useEffect(() => {
         const john = scoreboard.players;
         setLeaders([...john].sort((a, b) => b.score - a.score));
+
+        localStorage.removeItem('skName')
+        localStorage.removeItem('skHost')
+        localStorage.removeItem('skHarryToggle')
+        localStorage.removeItem('skRascalToggle')
+        localStorage.removeItem('skCurrentRound')
+        localStorage.removeItem('skPlayerList')
+        localStorage.removeItem('skWinner')
+        localStorage.removeItem('skScoreboard')
+        localStorage.removeItem('skGameId')
+        localStorage.removeItem('skPlayerId')
     }, []);
 
     return (

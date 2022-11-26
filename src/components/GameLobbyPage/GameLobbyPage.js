@@ -21,21 +21,30 @@ const GameLobbyPage = () => {
         playerList,
         setPlayerList,
         setCurrentRound,
+        scoreBoard,
         setScoreboard,
     } = useContext(AppContext);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Test Connection with Socket
-        socket.emit('pingSocket', 'Hello from React');
+        console.log("PLAYER LIST TEST: ", playerList)
+        console.log("MY ID:", id)
+        console.log("HOST: ", host)
 
-        // Join room *Will create new if doesn't exist*
-        console.log('Attepting to join room with id', gameId);
-        const data = {
-            gameId: gameId,
-            name: name,
-        };
-        socket.emit('joinGame', data);
+
+        if (localStorage.getItem('skGameId') != gameId) {
+            // Join room *Will create new if doesn't exist*
+            console.log('Attepting to join room with name', name);
+            console.log('Attepting to join room with id', gameId);
+            const data = {
+                gameId: gameId,
+                name: name,
+            };
+            socket.emit('joinGame', data);
+        }
+
+        localStorage.setItem('skGameId', gameId)
+
 
         // Client Listeners
         socket.on('pingClient', (msg) => {
@@ -43,25 +52,34 @@ const GameLobbyPage = () => {
         });
 
         socket.on('setPlayerId', (playerId) => {
+            localStorage.setItem('skPlayerId', playerId)
             setId(playerId);
         });
 
         socket.on('gameJoined', (data) => {
             console.log('game Joined Data: ', data);
+            localStorage.setItem('skGameId', data.gameId)
             setPlayerList(data.playerList);
-            setHost(data.playerList[0]);
+            localStorage.setItem('skPlayerList', data.playerList)
+            setHost(data.playerList[0].id);
+            localStorage.setItem('skHost', data.playerList[0].id)
         });
 
         socket.on('removePlayer', (data) => {
             console.log('removing player');
             setPlayerList(data.players);
-            setHost(data.players[0]);
+            localStorage.setItem('skPlayerList', data.players)
+            setHost(data.players[0].id);
+            localStorage.setItem('skHost', data.players[0].id)
         });
 
         socket.on('start', (data) => {
             console.log('Starting Game: ', data);
-            setCurrentRound(data.currentRound);
+            setCurrentRound(parseInt(data.currentRound));
+            localStorage.setItem('skCurrentRound', data.currentRound)
             setScoreboard(data.scoreBoard);
+            console.log("EGGGGG: ", localStorage.getItem('skScoreboard'))
+            localStorage.setItem('skScoreboard', data.scoreBoard)
             navigate('/bid');
         });
     }, []);
@@ -76,7 +94,7 @@ const GameLobbyPage = () => {
                         Invite Code
                     </ApplicationInput>
 
-                    {id === host.id ? (
+                    {id === host ? (
                         <Button
                             className={styles.button}
                             onClick={() => {

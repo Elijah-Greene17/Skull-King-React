@@ -55,7 +55,6 @@ const CreateJoinPage = () => {
                                     }
                                 })
                                 .then((data) => {
-                                    console.log('EG Data: ', data.id);
                                     setGameId(data.id);
                                     setError('');
                                     navigate('/lobby');
