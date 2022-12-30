@@ -33,14 +33,16 @@ const BidPage = () => {
             <div className={styles.bidPage}>
                 <Error message={error} hidden={error.length === 0} />
                 <TitleHeader>Round {currentRound}</TitleHeader>
-                <ApplicationInput
-                    onChange={(value) => {
-                        setBid(value);
-                    }}
-                    maxLength={2}
-                >
-                    Input Bid
-                </ApplicationInput>
+                {!bidEntered &&
+                    <ApplicationInput
+                        onChange={(value) => {
+                            setBid(value);
+                        }}
+                        maxLength={2}
+                    >
+                        Input Bid
+                    </ApplicationInput>}
+
                 {bidEntered ? (
                     <Label className={styles.waitingLabel}>Bid locked</Label>
                 ) : (

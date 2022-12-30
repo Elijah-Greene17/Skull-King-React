@@ -1,17 +1,25 @@
 import styles from './Scorecard.module.css';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../Contexts/AppContext';
+import TitleHeader from '../UI/TitleHeader/TitleHeader';
 
 const Scorecard = () => {
     const { currentRound, scoreboard } = useContext(AppContext);
+
+    const [players, setPlayers] = useState([])
+
+    useEffect(() => {
+        const john = scoreboard.players;
+        setPlayers([...john].sort((a, b) => b.score - a.score));
+    }, [scoreboard.players])
 
     return (
         <table className={styles.scoreCard}>
             <Row name="Player" bid="Bid" score="Score" />
             <Row />
             {
-                scoreboard.players ?
-                    scoreboard.players.map((player) => {
+                players ?
+                    players.map((player) => {
                         return (
                             <Row
                                 name={player.name}

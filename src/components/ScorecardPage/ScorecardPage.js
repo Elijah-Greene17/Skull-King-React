@@ -6,6 +6,7 @@ import styles from './ScorecardPage.module.css';
 import { AppContext } from '../../Contexts/AppContext';
 import { useEffect, useContext } from 'react';
 import socket from '../../Socket/Socket';
+import TitleHeader from '../UI/TitleHeader/TitleHeader';
 
 const ScorecardPage = () => {
     const {
@@ -81,6 +82,7 @@ const ScorecardPage = () => {
     return (
         <MainView>
             <div className={styles.scorecardPage}>
+                <TitleHeader>Round {currentRound}</TitleHeader>
                 <Scorecard />
                 <div>
                     <div className={styles.pirates}>

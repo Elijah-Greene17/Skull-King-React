@@ -104,30 +104,57 @@ const LeaderBoardPage = () => {
                         );
                     })}
                 </table>
-                <div>
-                    {id === host ? (
-                        leaders.length === playerList.length ? (
-                            <Button
-                                className={styles.button}
-                                onClick={() => {
-                                    socket.emit('isRoundOver', {
-                                        gameId: gameId,
-                                    });
-                                }}
-                            >
-                                Next Round
-                            </Button>
+                {currentRound < 10 ?
+                    <div>
+                        {id === host ? (
+                            leaders.length === playerList.length ? (
+                                <Button
+                                    className={styles.button}
+                                    onClick={() => {
+                                        socket.emit('isRoundOver', {
+                                            gameId: gameId,
+                                        });
+                                    }}
+                                >
+                                    Start Round {currentRound + 1}
+                                </Button>
+                            ) : (
+                                <Label className={styles.waitingLabel}>
+                                    Waiting for everyone...
+                                </Label>
+                            )
                         ) : (
                             <Label className={styles.waitingLabel}>
-                                Waiting for everyone...
+                                Waiting for round {currentRound + 1}
                             </Label>
-                        )
-                    ) : (
-                        <Label className={styles.waitingLabel}>
-                            Waiting for next round...
-                        </Label>
-                    )}
-                </div>
+                        )}
+                    </div>
+                    :
+                    <div>
+                        {id === host ? (
+                            leaders.length === playerList.length ? (
+                                <Button
+                                    className={styles.button}
+                                    onClick={() => {
+                                        socket.emit('isRoundOver', {
+                                            gameId: gameId,
+                                        });
+                                    }}
+                                >
+                                    Next
+                                </Button>
+                            ) : (
+                                <Label className={styles.waitingLabel}>
+                                    Waiting for everyone...
+                                </Label>
+                            )
+                        ) : (
+                            <Label className={styles.waitingLabel}>
+                                Waiting for host
+                            </Label>
+                        )}
+                    </div>
+                }
             </div>
         </MainView>
     );
